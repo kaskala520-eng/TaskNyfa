@@ -1,0 +1,8 @@
+{
+  "firestore": [
+    {
+      "database": "ai-studio-cashai-11341a68-74e0-4657-be00-ceb77282128f",
+      "rules": "firestore.rules"
+    }
+  ]
+}

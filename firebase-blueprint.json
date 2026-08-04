@@ -1,0 +1,85 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Registered users of the CashAI platform.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "appUrl": { "type": "string" },
+        "registeredAt": { "type": "string" },
+        "earnedForOwner": { "type": "number" },
+        "walletType": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "suspended"] },
+        "role": { "type": "string", "enum": ["owner", "manager", "assistant", "user"] },
+        "isDistinguished": { "type": "boolean" },
+        "distinguishedRewardsUSD": { "type": "number" },
+        "balance": { "type": "number" },
+        "withdrawn": { "type": "number" }
+      },
+      "required": ["id", "name", "phone", "registeredAt", "earnedForOwner", "walletType", "status"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Tracks all points conversions, syncing, transfers and withdrawals.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["sync", "convert", "withdraw", "transfer"] },
+        "userId": { "type": "string" },
+        "platformId": { "type": "string" },
+        "platformName": { "type": "string" },
+        "platformNameAr": { "type": "string" },
+        "points": { "type": "number" },
+        "amount": { "type": "number" },
+        "currency": { "type": "string" },
+        "status": { "type": "string", "enum": ["success", "pending", "failed"] },
+        "date": { "type": "string" },
+        "walletType": { "type": "string" },
+        "walletDetails": { "type": "string" },
+        "recipientName": { "type": "string" },
+        "recipientCountry": { "type": "string" },
+        "recipientAmount": { "type": "number" },
+        "recipientCurrency": { "type": "string" },
+        "feeUsd": { "type": "number" }
+      },
+      "required": ["id", "type", "userId", "amount", "currency", "status", "date"]
+    },
+    "MarketplaceOrder": {
+      "title": "Marketplace Order",
+      "description": "Tracks service and product contact requests between clients and providers.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clientId": { "type": "string" },
+        "clientName": { "type": "string" },
+        "clientPhone": { "type": "string" },
+        "providerId": { "type": "string" },
+        "providerName": { "type": "string" },
+        "providerPhone": { "type": "string" },
+        "itemName": { "type": "string" },
+        "type": { "type": "string", "enum": ["service", "product"] },
+        "status": { "type": "string", "enum": ["pending", "accepted", "rejected"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "clientId", "clientName", "providerId", "providerName", "itemName", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User accounts and balances."
+    },
+    "transactions/{transactionId}": {
+      "schema": { "$ref": "#/entities/Transaction" },
+      "description": "All system financial and syncing history."
+    },
+    "marketplace_orders/{orderId}": {
+      "schema": { "$ref": "#/entities/MarketplaceOrder" },
+      "description": "Service and product requests between users."
+    }
+  }
+}

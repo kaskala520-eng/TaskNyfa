@@ -1,0 +1,6 @@
+{
+  "name": "tasknyfa",
+  "description": "منصة لربط حسابات المواقع والتطبيقات، تجميع نقاطها وتحويلها إلى أموال حقيقية يمكن سحبها عبر المحافظ الإلكترونية المعتمدة.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
